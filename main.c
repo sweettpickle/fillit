@@ -1,31 +1,71 @@
 #include "libft/libft.h"
-
 #include <stdio.h>
 
-int check(char const *mas)
+int right_rows(char const *mas)
 {
 	int i;
 	int row;
-	int symbol;
 
 	i = 0;
 	row = 0;
-	symbol = 0;
-	while (mas[i])
+	while (mas[i] != '\0')
 	{
-		if (mas[i] == '\n')
+		if (mas[i] != '\n' && (mas[i + 1] == '\n' || mas[i + 1] == '\0'))
 			row++;
-		if (mas[i] == '.' || mas[i] == '#')
-			symbol++;
+		if (mas[i] == '\n' && (mas[i + 1] == '\n' || mas[i + 1] == '\0'))
+		{
+			if (row != 4)
+				return (1);
+			row = 0;
+		}
 		i++;
 	}
-	if (row != 4 || symbol != 16)
+	return (0);
+}
+
+int right_colom(char const *mas)
+{
+	int i;
+	int colom;
+
+	i = 0;
+	colom = 0;
+	while (mas[i] != '\0')
 	{
-		printf("!!!");
-		return (0);
+		if (mas[i] != '\n')
+			colom++;
+		else if (mas[i] == '\n' && mas[i - 1] == '\n')
+		{
+			i++;
+			continue ;
+		}
+		else
+		{
+			if (colom != 4)
+				return (1);
+			colom = 0;
+		}
+		i++;
 	}
-	printf("True!");
-	return (1);
+	return (0);
+}
+
+int check_errors(char const *mas)
+{
+	int i;
+
+	i = 0;
+	if (right_rows(mas) || right_colom(mas))
+		return (1);
+//	if (right_colom(mas))
+//		return (1);
+	while (mas[i] != '\0')
+	{
+		if (mas[i] != '.' && mas[i] != '#' && mas[i] != '\n')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 void function(char *argv)
@@ -33,9 +73,7 @@ void function(char *argv)
 	int fd;
 	char *str;
 	char *mas;
-	int i;
 
-	i = 0;
 	str = ft_strnew(4);
 	mas = ft_strnew(1);
 	fd = open(argv, O_RDONLY);
@@ -43,15 +81,15 @@ void function(char *argv)
 	{
 		mas = ft_strjoin(mas, str);
 		mas = ft_strjoin(mas, "\n");
-		if (!ft_strcmp(str, ""))
-		{
-			check(mas);
-		}
 		ft_bzero(&str, 4);
-		i++;
+	}
+	if (check_errors(mas))
+	{
+		printf("error!");
+		return ;
 	}
 //	printf("%d", i);
-//	printf("%s\n", mas);
+	printf("%s", mas);
 }
 
 int main(int argc, char **argv)
