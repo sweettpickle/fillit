@@ -64,8 +64,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/fillit1.dir/libft/ft_toupper.c.o"
   "CMakeFiles/fillit1.dir/libft/get_next_line.c.o"
   "CMakeFiles/fillit1.dir/main.c.o"
-  "fillit1.pdb"
   "fillit1"
+  "fillit1.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -50,21 +50,39 @@ int right_colom(char const *mas)
 	return (0);
 }
 
+int num_tetrimino(char const *mas)
+{
+    int i;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (mas[i] != '\0')
+    {
+        if (mas[i] == '\n' && (mas[i + 1] == '\n' || mas[i + 1] == '\0'))
+            count++;
+        i++;
+    }
+    return (count);
+}
+
 int check_errors(char const *mas)
 {
 	int i;
+	int c;
 
 	i = 0;
 	if (right_rows(mas) || right_colom(mas))
 		return (1);
-//	if (right_colom(mas))
-//		return (1);
 	while (mas[i] != '\0')
 	{
 		if (mas[i] != '.' && mas[i] != '#' && mas[i] != '\n')
 			return (1);
 		i++;
 	}
+	c = num_tetrimino(mas);
+	if (c < 1 || c > 26)
+	    return (1);
 	return (0);
 }
 
@@ -88,7 +106,6 @@ void function(char *argv)
 		printf("error!");
 		return ;
 	}
-//	printf("%d", i);
 	printf("%s", mas);
 }
 

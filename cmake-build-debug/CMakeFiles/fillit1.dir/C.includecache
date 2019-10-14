@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/cdoreah/Desktop/cdoreah/fillit1/libft/libft.h
+/home/daria/Desktop/cdoreah/fil/libft/libft.h
 string.h
 -
 stdlib.h
@@ -16,9 +16,9 @@ unistd.h
 fcntl.h
 -
 
-/Users/cdoreah/Desktop/cdoreah/fillit1/main.c
+/home/daria/Desktop/cdoreah/fil/main.c
 libft/libft.h
-/Users/cdoreah/Desktop/cdoreah/fillit1/libft/libft.h
+/home/daria/Desktop/cdoreah/fil/libft/libft.h
 stdio.h
 -
 
