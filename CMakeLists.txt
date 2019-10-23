@@ -72,4 +72,4 @@ add_executable(fillit1
         libft/get_next_line.c
         libft/libft.h
         author
-        main.c)
+        main.c check_errors.c biblio.h)

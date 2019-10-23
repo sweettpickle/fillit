@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/88/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /Users/cdoreah/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/88/bin/cmake/linux/bin/cmake -E remove -f
+RM = /Users/cdoreah/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/daria/Desktop/cdoreah/fil
+CMAKE_SOURCE_DIR = /Users/cdoreah/Desktop/cdoreah/fillit
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/daria/Desktop/cdoreah/fil/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/cdoreah/Desktop/cdoreah/fillit/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/daria/Desktop/cdoreah/fil/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/88/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Users/cdoreah/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/88/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Users/cdoreah/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/daria/Desktop/cdoreah/fil/cmake-build-debug/CMakeFiles /home/daria/Desktop/cdoreah/fil/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cdoreah/Desktop/cdoreah/fillit/cmake-build-debug/CMakeFiles /Users/cdoreah/Desktop/cdoreah/fillit/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/daria/Desktop/cdoreah/fil/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cdoreah/Desktop/cdoreah/fillit/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,33 @@ fillit1: cmake_check_build_system
 fillit1/fast:
 	$(MAKE) -f CMakeFiles/fillit1.dir/build.make CMakeFiles/fillit1.dir/build
 .PHONY : fillit1/fast
+
+check_errors.o: check_errors.c.o
+
+.PHONY : check_errors.o
+
+# target to build an object file
+check_errors.c.o:
+	$(MAKE) -f CMakeFiles/fillit1.dir/build.make CMakeFiles/fillit1.dir/check_errors.c.o
+.PHONY : check_errors.c.o
+
+check_errors.i: check_errors.c.i
+
+.PHONY : check_errors.i
+
+# target to preprocess a source file
+check_errors.c.i:
+	$(MAKE) -f CMakeFiles/fillit1.dir/build.make CMakeFiles/fillit1.dir/check_errors.c.i
+.PHONY : check_errors.c.i
+
+check_errors.s: check_errors.c.s
+
+.PHONY : check_errors.s
+
+# target to generate assembly for a file
+check_errors.c.s:
+	$(MAKE) -f CMakeFiles/fillit1.dir/build.make CMakeFiles/fillit1.dir/check_errors.c.s
+.PHONY : check_errors.c.s
 
 libft/ft_atoi.o: libft/ft_atoi.c.o
 
@@ -1885,8 +1912,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... fillit1"
 	@echo "... edit_cache"
+	@echo "... fillit1"
+	@echo "... check_errors.o"
+	@echo "... check_errors.i"
+	@echo "... check_errors.s"
 	@echo "... libft/ft_atoi.o"
 	@echo "... libft/ft_atoi.i"
 	@echo "... libft/ft_atoi.s"

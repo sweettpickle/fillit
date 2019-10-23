@@ -1,92 +1,6 @@
-#include "libft/libft.h"
-#include <stdio.h>
+#include "biblio.h"
 
-int right_rows(char const *mas)
-{
-	int i;
-	int row;
-
-	i = 0;
-	row = 0;
-	while (mas[i] != '\0')
-	{
-		if (mas[i] != '\n' && (mas[i + 1] == '\n' || mas[i + 1] == '\0'))
-			row++;
-		if (mas[i] == '\n' && (mas[i + 1] == '\n' || mas[i + 1] == '\0'))
-		{
-			if (row != 4)
-				return (1);
-			row = 0;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int right_colom(char const *mas)
-{
-	int i;
-	int colom;
-
-	i = 0;
-	colom = 0;
-	while (mas[i] != '\0')
-	{
-		if (mas[i] != '\n')
-			colom++;
-		else if (mas[i] == '\n' && mas[i - 1] == '\n')
-		{
-			i++;
-			continue ;
-		}
-		else
-		{
-			if (colom != 4)
-				return (1);
-			colom = 0;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int num_tetrimino(char const *mas)
-{
-    int i;
-    int count;
-
-    i = 0;
-    count = 0;
-    while (mas[i] != '\0')
-    {
-        if (mas[i] == '\n' && (mas[i + 1] == '\n' || mas[i + 1] == '\0'))
-            count++;
-        i++;
-    }
-    return (count);
-}
-
-int check_errors(char const *mas)
-{
-	int i;
-	int c;
-
-	i = 0;
-	if (right_rows(mas) || right_colom(mas))
-		return (1);
-	while (mas[i] != '\0')
-	{
-		if (mas[i] != '.' && mas[i] != '#' && mas[i] != '\n')
-			return (1);
-		i++;
-	}
-	c = num_tetrimino(mas);
-	if (c < 1 || c > 26)
-	    return (1);
-	return (0);
-}
-
-void function(char *argv)
+int get_and_check_tetrimino(char *argv)
 {
 	int fd;
 	char *str;
@@ -103,16 +17,18 @@ void function(char *argv)
 	}
 	if (check_errors(mas))
 	{
-		printf("error!");
-		return ;
+		printf("error");
+		return (1);
 	}
 	printf("%s", mas);
+	return (0);
 }
 
 int main(int argc, char **argv)
 {
 	if (argc != 2)
 		return 0;
-	function(argv[1]);
-	return 0;
+	if (get_and_check_tetrimino(argv[1]))
+		return (1);
+	return (0);
 }

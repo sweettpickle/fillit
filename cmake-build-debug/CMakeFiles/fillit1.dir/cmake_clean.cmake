@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/fillit1.dir/check_errors.c.o"
   "CMakeFiles/fillit1.dir/libft/ft_atoi.c.o"
   "CMakeFiles/fillit1.dir/libft/ft_bzero.c.o"
   "CMakeFiles/fillit1.dir/libft/ft_div_mod.c.o"

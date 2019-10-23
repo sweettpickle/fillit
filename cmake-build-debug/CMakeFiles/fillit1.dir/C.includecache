@@ -6,19 +6,5 @@
 
 #IncludeRegexTransform: 
 
-/home/daria/Desktop/cdoreah/fil/libft/libft.h
-string.h
--
-stdlib.h
--
-unistd.h
--
-fcntl.h
--
-
-/home/daria/Desktop/cdoreah/fil/main.c
-libft/libft.h
-/home/daria/Desktop/cdoreah/fil/libft/libft.h
-stdio.h
--
+/Users/cdoreah/Desktop/cdoreah/fillit/check_errors.c
 
