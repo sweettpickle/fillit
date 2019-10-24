@@ -6,5 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/Users/cdoreah/Desktop/cdoreah/fillit/check_errors.c
+/Users/cdoreah/Desktop/cdoreah/fillit/biblio.h
+libft/libft.h
+/Users/cdoreah/Desktop/cdoreah/fillit/libft/libft.h
+stdio.h
+-
+
+/Users/cdoreah/Desktop/cdoreah/fillit/libft/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+fcntl.h
+-
+
+/Users/cdoreah/Desktop/cdoreah/fillit/main.c
+biblio.h
+/Users/cdoreah/Desktop/cdoreah/fillit/biblio.h
 

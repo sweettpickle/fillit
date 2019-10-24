@@ -1,13 +1,25 @@
 #include "biblio.h"
 
-int get_and_check_tetrimino(char *argv)
+void insert_struct(char const *mas)
+{
+	int i;
+	t_tetris *block;
+
+	i = 0;
+	while (mas[i])
+	{
+		if (mas[i] == '#')
+
+		i++;
+	}
+}
+
+int		get_and_check_tetrimino(char *argv, char const *mas)
 {
 	int fd;
 	char *str;
-	char *mas;
 
 	str = ft_strnew(4);
-	mas = ft_strnew(1);
 	fd = open(argv, O_RDONLY);
 	while (get_next_line(fd, &str))
 	{
@@ -24,11 +36,16 @@ int get_and_check_tetrimino(char *argv)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
+	char *mas;
+
+	mas = ft_strnew(1);
 	if (argc != 2)
 		return 0;
-	if (get_and_check_tetrimino(argv[1]))
+	if (get_and_check_tetrimino(argv[1], mas))
 		return (1);
+	insert_struct(mas);
+//	clear(mas);
 	return (0);
 }
