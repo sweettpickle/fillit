@@ -68,7 +68,7 @@ int		number_tetrimino(char const *mas)
 	return (count);
 }
 
-int		right_figure(char const *mas)
+int		valide_figure(char const *mas)
 {
 	int i;
 	int j;
@@ -103,7 +103,7 @@ int		right_figure(char const *mas)
 	return (0);
 }
 
-int		check_errors(char const *mas)
+int		valide_block(char const *mas)
 {
 	int i;
 
@@ -116,7 +116,7 @@ int		check_errors(char const *mas)
 			return (1);
 		i++;
 	}
-	if (!mas[0] || number_tetrimino(mas) > 26 || right_figure(mas))
+	if (valide_figure(mas)  || !mas[0] || number_tetrimino(mas) > 26)
 		return (1);
 	return (0);
 }
