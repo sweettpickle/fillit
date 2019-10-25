@@ -6,5 +6,5 @@ C_FLAGS = -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/cdoreah/Desktop/cdoreah/fillit/libft 
+C_INCLUDES = -I/Users/scash/Desktop/fillit/libft 
 

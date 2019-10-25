@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/Users/cdoreah/Desktop/cdoreah/fillit/biblio.h
+/Users/scash/Desktop/fillit/biblio.h
 libft/libft.h
-/Users/cdoreah/Desktop/cdoreah/fillit/libft/libft.h
+/Users/scash/Desktop/fillit/libft/libft.h
 stdio.h
 -
 
-/Users/cdoreah/Desktop/cdoreah/fillit/libft/libft.h
+/Users/scash/Desktop/fillit/libft/libft.h
 string.h
 -
 stdlib.h
@@ -22,7 +22,7 @@ unistd.h
 fcntl.h
 -
 
-/Users/cdoreah/Desktop/cdoreah/fillit/main.c
+/Users/scash/Desktop/fillit/main.c
 biblio.h
-/Users/cdoreah/Desktop/cdoreah/fillit/biblio.h
+/Users/scash/Desktop/fillit/biblio.h
 
