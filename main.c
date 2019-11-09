@@ -1,117 +1,97 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scash <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/01 17:15:58 by scash             #+#    #+#             */
+/*   Updated: 2019/11/07 17:09:48 by scash            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "biblio.h"
 
-void insert_struct(t_tetris **mas_tetrims, char const *mas)
+void			print_tab(char **tab, int size)
 {
-	int i;
-	int count;
-	int id;
-	int num;
+	int			i;
 
-    i = 0;
-    id = 0;
-    num = 0;
-    count = number_tetrimino(mas);
-    *mas_tetrims = malloc(sizeof(t_tetris) * count);
-    while (*mas)
-    {
-        if (*mas == '\n' && *(mas + 1) == '\n')
-        {
-            id++;
-            i = 0;
-            num = 0;
-        }
-		else if (*mas == '#')
-        {
-            mas_tetrims[id]->id = 'A' + id;
-            mas_tetrims[id]->x[num] = i % 4;
-            mas_tetrims[id]->y[num] = i / 4;
-            num++;
-            i++;
-        }
-		else if (*mas == '.')
-		    i++;
-		mas++;
-	}
-}
-
-void    filter_mas(t_tetris **mas_tetrims) {
-    int num;
-    int min_y;
-    int min_x;
-
-    num = 0;
-    min_y = 4;
-    min_x = 4;
-    while (num < 4) {
-        min_x = *mas_tetrims[num]->x < min_x ? *mas_tetrims[num]->x : min_x;
-        min_y = *mas_tetrims[num]->y < min_y ? *mas_tetrims[num]->y : min_y;
-        num++;
-    }
-    num = 0;
-    while (num < 4)
-    {
-        *mas_tetrims[num]->x -= min_x;
-        *mas_tetrims[num]->y -= min_y;
-        num++;
-    }
-}
-
-int		get_and_check_tetrimino(char *argv, t_tetris **mas_tetrims)
-{
-	int     fd;
-	char    *str;
-	char    *mas;
-
-	str = ft_strnew(4);
-    mas = ft_strnew(1);
-	fd = open(argv, O_RDONLY);
-	while (get_next_line(fd, &str))
+	i = 0;
+	while (i < size)
 	{
-		mas = ft_strjoin(mas, str);
-		mas = ft_strjoin(mas, "\n");
-		ft_bzero(&str, 4);
+		ft_putstr(tab[i]);
+		i++;
+		ft_putchar('\n');
 	}
-	if (valide_block(mas))
-		return (1);
-	insert_struct(mas_tetrims, mas);
-	filter_mas(mas_tetrims);
-	return (0);
 }
 
-void print_tet(t_tetris    *mas_tetrims, int num)
+int				eval_tet(t_tetris *mas_tetrims,
+		int num, char **square, int size)
 {
-    int i;
-    int j;
-    int id;
+	int			i;
+	int			j;
 
-    i = 0;
-    j = 0;
-    id = 0;
-    while(i < 4)
-    {
-        j = 0;
-        while(j < 4)
-        {
-            while(id < 4)
-            {
-                if (mas_tetrims[num].x[id] == j && mas_tetrims[num].y[id] == i)
-            }
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	j = 0;
+	while (1)
+	{
+		if (put_tetrimino(square, i, j, *mas_tetrims))
+		{
+			if (mas_tetrims->id - 'A' == num - 1)
+				return (1);
+			if (eval_tet((mas_tetrims + 1), num, square, size))
+				return (1);
+			else
+				del_tet(*mas_tetrims, square);
+		}
+		j++;
+		if (j == size)
+		{
+			j = 0;
+			i++;
+		}
+		if (i == size)
+			return (0);
+	}
 }
 
-int		main(int argc, char **argv)
+void			cleaning(char *mas, char **square,
+		int size, t_tetris *mas_tetrims)
 {
-	t_tetris    *mas_tetrims;
+	int			i;
 
+	i = 0;
+	free(mas);
+	while (i < size)
+		free(square[i++]);
+	free(square);
+	free(mas_tetrims);
+}
+
+int				main(int argc, char **argv)
+{
+	t_tetris	*mas_tetrims;
+	char		*mas;
+	int			i;
+	char		**square;
+
+	square = NULL;
 	if (argc != 2)
-		return 0;
-	if (get_and_check_tetrimino(argv[1], &mas_tetrims))
 	{
-		printf("error");
-		return (1);
+		ft_putstr("usage: ./fillit source_file\n");
+		return (0);
 	}
+	if (get_and_check_tetrimino(argv[1], &mas))
+		return (1);
+	mas_tetrims = insert_struct(mas);
+	i = number_tetrimino(mas);
+	while (i-- > 0)
+		filter_mas(mas_tetrims, i);
+	i = get_min_size(mas_tetrims, number_tetrimino(mas));
+	square = create_square(i, square);
+	while (!eval_tet(mas_tetrims, number_tetrimino(mas), square, i))
+		square = create_square(++i, square);
+	print_tab(square, i);
+	cleaning(mas, square, i, mas_tetrims);
 	return (0);
 }
