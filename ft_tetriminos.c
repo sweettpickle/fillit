@@ -6,7 +6,7 @@
 /*   By: scash <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:28:46 by scash             #+#    #+#             */
-/*   Updated: 2019/11/07 20:09:39 by cdoreah          ###   ########.fr       */
+/*   Updated: 2019/11/14 18:08:27 by cdoreah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,12 @@ int			put_tetrimino(char **square, int i, int j, t_tetris tet)
 	return (1);
 }
 
-int			get_and_check_tetrimino(char *argv, char **mas)
+void		readstr(char **mas, int fd)
 {
-	int		fd;
 	char	*str;
 	char	*tmp;
-	int		l;
 
-	*mas = ft_strnew(0);
-	fd = open(argv, O_RDONLY);
-	while ((l = get_next_line(fd, &str)))
+	while (get_next_line(fd, &str))
 	{
 		tmp = ft_strjoin(*mas, str);
 		free(*mas);
@@ -71,6 +67,20 @@ int			get_and_check_tetrimino(char *argv, char **mas)
 		*mas = tmp;
 		free(str);
 	}
+}
+
+int			get_and_check_tetrimino(char *argv, char **mas)
+{
+	int		fd;
+
+	if ((fd = open(argv, O_RDONLY)) == -1)
+	{
+		free(*mas);
+		ft_putstr("error\n");
+		return (1);
+	}
+	*mas = ft_strnew(0);
+	readstr(mas, fd);
 	if (valide_block(*mas))
 	{
 		free(*mas);
